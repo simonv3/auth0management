@@ -1,0 +1,5 @@
+settings.py
+emails.txt
+invite.json
+*.pyc
+__pycache__

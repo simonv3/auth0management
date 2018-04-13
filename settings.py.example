@@ -1,0 +1,21 @@
+AUTH0 = {
+    'DOMAIN': '',
+    'AUDIENCE': '',
+    'CLIENT_ID': '',
+    'CLIENT_SECRET': ''
+}
+
+RESULT_URL = ''
+
+MAILGUN = {
+    'API': '',
+    'API_KEY': '',
+    'FROM': ''
+}
+
+ONBOARDING = {
+    'SUBJECT': 'Welcome!'
+    'TEXT': """
+      Hey!
+      """
+}
