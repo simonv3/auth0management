@@ -11,7 +11,5 @@ def send_onboard_email(to_user):
               "text": settings.ONBOARDING['TEXT']
         })
 
-    print(r.json())
+    print('\t', r.json()['message'])
     r.raise_for_status()
-
-    print(r.json())

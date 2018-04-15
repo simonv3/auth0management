@@ -18,9 +18,9 @@ parser.add_argument('--input-file',
     metavar='i',
     type=argparse.FileType('r'),
     help='the input file')
-parser.add_argument('--reset-password',
+parser.add_argument('--send-onboard',
     action='store_true',
-    help="specify if the password for the just created user should be reset and an email sent")
+    help="specify if the password for the just created user should be reset and an pnboard email sent")
 
 auth0 = Auth0Management(
     domain=settings.AUTH0['DOMAIN'],
@@ -32,17 +32,19 @@ auth0 = Auth0Management(
 args = parser.parse_args()
 vard_args = vars(args)
 
-print(vard_args)
+def onboard_user(user_success_object):
+    print(user_success_object)
+    (success, user) = user_success_object
+    ticket = auth0.create_password_change_ticket(user, settings.RESULT_URL)
+    send_email.send_onboard_email(user)
 
 if ('email' in vard_args and vard_args['email']):
     email = vard_args['email']
 
-    (success, user) = auth0.create_user(email)
-    print(success, user['email'])
+    user_success_object = auth0.create_user(email)
 
-    if 'reset_password' in vard_args and vard_args['reset_password']:
-        ticket = auth0.create_password_change_ticket(user, settings.RESULT_URL)
-        send_email.send_onboard_email(user)
+    if 'send_onboard' in vard_args and vard_args['send_onboard']:
+        onboard_user(user_success_object)
 
 if ('input_file' in vard_args):
     f = vard_args['input_file']
@@ -50,4 +52,7 @@ if ('input_file' in vard_args):
     if f:
         content = [line.strip() for line in f.readlines()]
         success = [auth0.create_user(email) for email in content]
-        print(success)
+
+        if 'send_onboard' in vard_args and vard_args['send_onboard']:
+            for user_success_object in success:
+                onboard_user(user_success_object)

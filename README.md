@@ -31,9 +31,9 @@ If you want to create a user and send them an onboard e-mail, you need to set
 up an e-mail provider for it. Right now the script relies on Mailgun, but other
 email providers could be added fairly easily.
 
-Once that's set up (in settings.py) you can add the --password-reset option
+Once that's set up (in settings.py) you can add the --send-onboard option
 to the API calls.
 
 ```
-python3 import_users.py --email=<email> --password-reset
+python3 import_users.py --email=<email> --send-onboard
 ```
