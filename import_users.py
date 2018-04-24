@@ -33,10 +33,9 @@ args = parser.parse_args()
 vard_args = vars(args)
 
 def onboard_user(user_success_object):
-    print(user_success_object)
     (success, user) = user_success_object
     ticket = auth0.create_password_change_ticket(user, settings.RESULT_URL)
-    send_email.send_onboard_email(user)
+    send_email.send_onboard_email(user, ticket)
 
 if ('email' in vard_args and vard_args['email']):
     email = vard_args['email']

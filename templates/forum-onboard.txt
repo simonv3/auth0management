@@ -1,0 +1,8 @@
+Hey,
+
+You can now log on to the DSA National Forum with the e-mail address {{ user.email }}.
+
+But first you'll need to set your password: {{ link.ticket }}.
+
+Thanks
+The DSA Forum Working Group

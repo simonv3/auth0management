@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}
+Welcome to the Forum!
+{% endblock %}
+{% block content %}
+<tr>
+  <td class="content-block">
+    You can now log on to the DSA National Forum with the e-mail address <em>{{ user.email }}</em>.
+  </td>
+</tr>
+<tr>
+  <td class="content-block">
+    But first you'll need to set your password:
+  </td>
+</tr>
+<tr>
+  <td class="content-block" itemprop="handler" itemscope itemtype="http://schema.org/HttpActionHandler">
+    <a href="{{ link.ticket }}" class="btn-primary" itemprop="url">Set Password</a>
+  </td>
+</tr>
+<tr>
+  <td class="content-block">
+    &mdash; The DSA Forum Working Group
+  </td>
+</tr>
+</table>
+{% endblock %}
